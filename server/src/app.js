@@ -10,6 +10,4 @@ app.use(express.urlencoded({ extended: true, limit: "16kb" }));
 app.use(express.static("public"));
 app.use(cookieParser());
 
-app.listen(3000, () => console.log("Server started at port 3000!"));
-
 export default app;
