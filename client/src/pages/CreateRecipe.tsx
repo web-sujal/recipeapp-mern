@@ -49,7 +49,7 @@ const CreateRecipe = () => {
         recipe
       );
 
-      console.log(res);
+      console.log(res); // remove later
       alert("Recipe Created Successfully.");
 
       navigate("/");
@@ -59,7 +59,7 @@ const CreateRecipe = () => {
   };
 
   return (
-    <div className="pt-12 pb-20 flex min-h-[85vh] overflow-y-auto flex-col items-start justify-center gap-4 bg-slate-800">
+    <div className="pt-12 pb-20 flex min-h-[85vh] overflow-y-auto flex-col items-start justify-center gap-4 bg-slate-900">
       <h2 className="text-4xl mx-auto font-extrabold tracking-wide">
         Create Recipe
       </h2>
