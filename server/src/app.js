@@ -22,6 +22,6 @@ import { recipeRouter } from "./routes/recipe.routes.js";
 
 // routes declaration
 app.use("/auth", userRouter);
-app.use("/recipe", recipeRouter);
+app.use("/recipes", recipeRouter);
 
 export default app;

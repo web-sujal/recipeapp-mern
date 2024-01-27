@@ -8,6 +8,7 @@
 
 # frontend :
 
+1. remove alerts with shadcn toasts
 1. add `react-dropzone` feature while creating recipe
 1. dynamic wallpaper changing after 5 sec on auth page
 1. add animations using framer motion

@@ -16,7 +16,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="w-full px-4 bg-neutral-800 flex items-center justify-center gap-1 md:gap-6">
+    <div className="sticky top-0 w-full px-4 bg-neutral-800 flex items-center justify-center gap-1 md:gap-6">
       {NavbarLinks.map((link) => {
         return (
           <Link

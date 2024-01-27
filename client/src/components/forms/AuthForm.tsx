@@ -25,7 +25,7 @@ const AuthForm = ({
     >
       {/* username */}
       <label htmlFor="username" className="translate-y-2">
-        Username:{" "}
+        Username:
       </label>
       <input
         type="text"
@@ -37,7 +37,7 @@ const AuthForm = ({
 
       {/* password */}
       <label htmlFor="password" className="translate-y-2">
-        Password:{" "}
+        Password:
       </label>
       <input
         type="password"
