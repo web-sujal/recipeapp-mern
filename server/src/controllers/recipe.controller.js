@@ -33,7 +33,7 @@ const saveRecipe = async (req, res) => {
   try {
     const recipe = await Recipe.findById(req.body.recipeId);
     const user = await User.findById(req.body.userId);
-    user.savedRecipes.push(recipe);
+    user?.savedRecipes.push(recipe);
     await user.save({ validateBeforeSave: false });
 
     return res
@@ -41,7 +41,7 @@ const saveRecipe = async (req, res) => {
       .json(
         new ApiResponse(
           200,
-          { savedRecipes: user.savedRecipes },
+          { savedRecipes: user?.savedRecipes },
           "recipe saved successfully."
         )
       );
@@ -50,4 +50,45 @@ const saveRecipe = async (req, res) => {
   }
 };
 
-export { fetchAllRecipes, createRecipe, saveRecipe };
+const fetchSavedRecipeIds = async (req, res) => {
+  try {
+    const user = await User.findById(req.body.userId);
+
+    return res
+      .status(200)
+      .json(
+        new ApiResponse(
+          200,
+          { savedRecipes: user?.savedRecipes },
+          "saved recipes fetched successfully"
+        )
+      );
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+const fetchSavedRecipes = async (req, res) => {
+  try {
+    const user = await User.findById(req.body.userId);
+    const savedRecipes = await Recipe.find({
+      _id: { $in: user.savedRecipes },
+    });
+
+    return res
+      .status(200)
+      .json(
+        new ApiResponse(200, savedRecipes, "saved recipes fetched successfully")
+      );
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export {
+  fetchAllRecipes,
+  createRecipe,
+  saveRecipe,
+  fetchSavedRecipeIds,
+  fetchSavedRecipes,
+};
