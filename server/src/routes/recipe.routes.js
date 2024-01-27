@@ -1,6 +1,11 @@
 import { Router } from "express";
-import { Recipe } from "../models/Recipe.model.js";
+import {
+  createRecipe,
+  fetchAllRecipes,
+} from "../controllers/recipe.controller.js";
 
 const router = Router();
+
+router.route("/").get(fetchAllRecipes);
 
 export { router as recipeRouter };
