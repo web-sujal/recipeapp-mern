@@ -18,8 +18,10 @@ app.use(cookieParser());
 
 // router import
 import { userRouter } from "./routes/user.routes.js";
+import { recipeRouter } from "./routes/recipe.routes.js";
 
 // routes declaration
 app.use("/auth", userRouter);
+app.use("/recipe", recipeRouter);
 
 export default app;
