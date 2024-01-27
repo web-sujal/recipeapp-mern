@@ -1,8 +1,19 @@
 import { NavbarLinks } from "@/constants";
-import { Link, useLocation } from "react-router-dom";
+import { useCookies } from "react-cookie";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Button } from "../ui/button";
 
 const Navbar = () => {
   const { pathname } = useLocation();
+  const [cookies, setCookies] = useCookies(["accessToken"]);
+
+  const navigate = useNavigate();
+
+  const logout = () => {
+    setCookies("accessToken", "");
+    window.localStorage.removeItem("userId");
+    navigate("/login");
+  };
 
   return (
     <div className="w-full bg-neutral-800 flex items-center justify-center gap-6">
@@ -21,6 +32,17 @@ const Navbar = () => {
           </Link>
         );
       })}
+
+      {cookies.accessToken ? (
+        <Button onClick={logout}>Logout</Button>
+      ) : (
+        <Link
+          to="/login"
+          className="p-4 text-xl hover:text-emerald-200 hover:-translate-y-0.5 transition-all duration-150"
+        >
+          Login/Register
+        </Link>
+      )}
     </div>
   );
 };

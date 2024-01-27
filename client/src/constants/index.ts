@@ -11,8 +11,4 @@ export const NavbarLinks = [
     route: "/saved-recipes",
     label: "Saved Recipes",
   },
-  {
-    route: "/login",
-    label: "Login/Register",
-  },
 ];

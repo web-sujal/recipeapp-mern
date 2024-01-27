@@ -1,11 +1,13 @@
 import AuthForm from "@/components/forms/AuthForm";
 import axios from "axios";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Login = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -15,10 +17,15 @@ const Login = () => {
     }
 
     try {
-      axios.post("http://localhost:8000/auth/login", {
+      const res = await axios.post("http://localhost:8000/auth/login", {
         username,
         password,
       });
+
+      window.localStorage.setItem("userId", res.data._id);
+      navigate("/");
+
+      console.log(res);
     } catch (error) {
       console.error(error);
     }

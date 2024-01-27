@@ -1,11 +1,13 @@
 import AuthForm from "@/components/forms/AuthForm";
 import axios from "axios";
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
+
+  const navigate = useNavigate();
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -19,6 +21,9 @@ const Signup = () => {
         username,
         password,
       });
+
+      alert("Registration completed! Now Login.");
+      navigate("/login");
     } catch (error) {
       console.error(error);
     }
