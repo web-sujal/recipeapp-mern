@@ -15,4 +15,17 @@ const fetchAllRecipes = async (req, res) => {
   }
 };
 
-export { fetchAllRecipes };
+const createRecipe = async (req, res) => {
+  const recipe = req.body;
+  try {
+    await Recipe.create(recipe);
+
+    return res
+      .status(200)
+      .json(new ApiResponse(200, recipe, "recipe created successfully"));
+  } catch (error) {
+    throw new ApiError(500, "failed to create the recipe.");
+  }
+};
+
+export { fetchAllRecipes, createRecipe };
