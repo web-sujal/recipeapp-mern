@@ -1,4 +1,5 @@
 import AuthForm from "@/components/forms/AuthForm";
+import axios from "axios";
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
@@ -8,6 +9,19 @@ const Login = () => {
 
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    if (username === "" || password === "") {
+      return alert("username or password fields cannot be empty");
+    }
+
+    try {
+      axios.post("http://localhost:8000/auth/login", {
+        username,
+        password,
+      });
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
