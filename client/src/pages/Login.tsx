@@ -1,5 +1,9 @@
 const Login = () => {
-  return <div>Login</div>;
+  return (
+    <div className="flex flex-col gap-4 items-center justify-between">
+      Login
+    </div>
+  );
 };
 
 export default Login;

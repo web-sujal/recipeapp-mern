@@ -9,20 +9,22 @@ import SavedRecipes from "./pages/SavedRecipes";
 
 function App() {
   return (
-    <Routes>
-      {/* Public Routes */}
-      <Route element={<AuthLayout />}>
-        <Route path="/sign-up" element={<Signup />} />
-        <Route path="/login" element={<Login />} />
-      </Route>
+    <div className="h-screen w-full bg-slate-900 text-white">
+      <Routes>
+        {/* Public Routes */}
+        <Route element={<AuthLayout />}>
+          <Route path="/sign-up" element={<Signup />} />
+          <Route path="/login" element={<Login />} />
+        </Route>
 
-      {/* Private Routes */}
-      <Route element={<RootLayout />}>
-        <Route path="/" element={<Home />} />
-        <Route path="/create-recipe" element={<CreateRecipe />} />
-        <Route path="/saved-recipes" element={<SavedRecipes />} />
-      </Route>
-    </Routes>
+        {/* Private Routes */}
+        <Route element={<RootLayout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/create-recipe" element={<CreateRecipe />} />
+          <Route path="/saved-recipes" element={<SavedRecipes />} />
+        </Route>
+      </Routes>
+    </div>
   );
 }
 
