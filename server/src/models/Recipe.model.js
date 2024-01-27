@@ -9,7 +9,7 @@ const recipeSchema = new mongoose.Schema(
     cookingTime: { type: Number, required: true },
     createdBy: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "users",
+      ref: "User",
       required: true,
     },
   },

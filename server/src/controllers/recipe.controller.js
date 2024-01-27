@@ -1,4 +1,5 @@
 import { Recipe } from "../models/Recipe.model.js";
+import { User } from "../models/User.model.js";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
 
@@ -28,4 +29,25 @@ const createRecipe = async (req, res) => {
   }
 };
 
-export { fetchAllRecipes, createRecipe };
+const saveRecipe = async (req, res) => {
+  try {
+    const recipe = await Recipe.findById(req.body.recipeId);
+    const user = await User.findById(req.body.userId);
+    user.savedRecipes.push(recipe);
+    await user.save({ validateBeforeSave: false });
+
+    return res
+      .status(200)
+      .json(
+        new ApiResponse(
+          200,
+          { savedRecipes: user.savedRecipes },
+          "recipe saved successfully."
+        )
+      );
+  } catch (error) {
+    throw new ApiError(500, "couldn't save the recipe.");
+  }
+};
+
+export { fetchAllRecipes, createRecipe, saveRecipe };

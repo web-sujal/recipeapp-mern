@@ -16,6 +16,12 @@ const userSchema = new mongoose.Schema(
       required: [true, "Password is required."],
     },
     refreshToken: String,
+    savedRecipes: [
+      {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Recipe",
+      },
+    ],
   },
   { timestamps: true }
 );
