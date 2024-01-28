@@ -1,16 +1,14 @@
 import { NavbarLinks } from "@/constants";
-import { useCookies } from "react-cookie";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "../ui/button";
 
 const Navbar = () => {
   const { pathname } = useLocation();
-  const [cookies, setCookies] = useCookies(["accessToken"]);
+  const isLoggedIn = window.localStorage.getItem("userId");
 
   const navigate = useNavigate();
 
   const logout = () => {
-    setCookies("accessToken", "");
     window.localStorage.removeItem("userId");
     navigate("/login");
   };
@@ -33,7 +31,7 @@ const Navbar = () => {
         );
       })}
 
-      {cookies.accessToken ? (
+      {isLoggedIn ? (
         <Button onClick={logout}>Logout</Button>
       ) : (
         <Link

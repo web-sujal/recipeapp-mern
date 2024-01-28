@@ -8,3 +8,15 @@
   box-sizing: border-box;
   -webkit-tap-highlight-color: transparent;
 }
+
+::-webkit-scrollbar {
+  width: 7px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-neutral-900;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-neutral-600;
+}

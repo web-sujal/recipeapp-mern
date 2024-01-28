@@ -17,15 +17,17 @@ const Login = () => {
     }
 
     try {
-      const res = await axios.post("http://localhost:8000/auth/login", {
-        username,
-        password,
-      });
+      const res = await axios.post(
+        "http://localhost:8000/auth/login",
+        {
+          username,
+          password,
+        },
+        { withCredentials: true }
+      );
 
-      window.localStorage.setItem("userId", res.data._id);
+      window.localStorage.setItem("userId", res.data.data._id);
       navigate("/");
-
-      console.log(res);
     } catch (error) {
       console.error(error);
     }

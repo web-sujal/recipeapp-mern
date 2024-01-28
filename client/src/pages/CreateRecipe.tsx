@@ -75,6 +75,7 @@ const CreateRecipe = () => {
           className="w-full text-black outline-none ring-transparent rounded-sm py-2 px-3 caret-slate-800 mb-2"
           type="text"
           id="name"
+          value={recipe.name}
           name="name"
           onChange={handleChange}
         />
@@ -108,6 +109,7 @@ const CreateRecipe = () => {
           className="w-full text-black outline-none ring-transparent rounded-sm py-2 px-3 caret-slate-800 mb-2"
           id="instructions"
           name="instructions"
+          value={recipe.instructions}
           onChange={handleChange}
         />
 
@@ -119,6 +121,7 @@ const CreateRecipe = () => {
           type="text"
           id="imageUrl"
           name="imageUrl"
+          value={recipe.imageUrl}
           onChange={handleChange}
         />
 
@@ -130,6 +133,7 @@ const CreateRecipe = () => {
           type="number"
           id="cooking-time"
           name="cooking-time"
+          value={recipe.cookingTime}
           onChange={handleChange}
         />
 
