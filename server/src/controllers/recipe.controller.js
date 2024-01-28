@@ -2,8 +2,9 @@ import { Recipe } from "../models/Recipe.model.js";
 import { User } from "../models/User.model.js";
 import { ApiError } from "../utils/ApiError.js";
 import { ApiResponse } from "../utils/ApiResponse.js";
+import { asyncHandler } from "../utils/asyncHandler.js";
 
-const fetchAllRecipes = async (req, res) => {
+const fetchAllRecipes = asyncHandler(async (req, res) => {
   try {
     const recipes = await Recipe.find({});
 
@@ -14,9 +15,9 @@ const fetchAllRecipes = async (req, res) => {
   } catch (error) {
     throw new ApiError(500, "couldn't fetch recipes from the server.");
   }
-};
+});
 
-const createRecipe = async (req, res) => {
+const createRecipe = asyncHandler(async (req, res) => {
   const recipe = req.body;
   try {
     await Recipe.create(recipe);
@@ -27,9 +28,9 @@ const createRecipe = async (req, res) => {
   } catch (error) {
     throw new ApiError(500, "failed to create the recipe.");
   }
-};
+});
 
-const saveRecipe = async (req, res) => {
+const saveRecipe = asyncHandler(async (req, res) => {
   try {
     const recipe = await Recipe.findById(req.body.recipeId);
     const user = await User.findById(req.body.userId);
@@ -48,9 +49,9 @@ const saveRecipe = async (req, res) => {
   } catch (error) {
     throw new ApiError(500, "couldn't save the recipe.");
   }
-};
+});
 
-const fetchSavedRecipeIds = async (req, res) => {
+const fetchSavedRecipeIds = asyncHandler(async (req, res) => {
   try {
     const user = await User.findById(req.body.userId);
 
@@ -66,9 +67,9 @@ const fetchSavedRecipeIds = async (req, res) => {
   } catch (error) {
     console.error(error);
   }
-};
+});
 
-const fetchSavedRecipes = async (req, res) => {
+const fetchSavedRecipes = asyncHandler(async (req, res) => {
   try {
     const user = await User.findById(req.body.userId);
     const savedRecipes = await Recipe.find({
@@ -83,7 +84,7 @@ const fetchSavedRecipes = async (req, res) => {
   } catch (error) {
     console.error(error);
   }
-};
+});
 
 export {
   fetchAllRecipes,

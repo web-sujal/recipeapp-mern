@@ -1,7 +1,11 @@
-const asyncHandler = async (asyncFn) => {
-  try {
-    return await asyncFn(req, res, next);
-  } catch (error) {
-    console.error(error);
-  }
+const asyncHandler = (requestHandler) => {
+  return async (req, res, next) => {
+    try {
+      await requestHandler(req, res);
+    } catch (err) {
+      next(err);
+    }
+  };
 };
+
+export { asyncHandler };
