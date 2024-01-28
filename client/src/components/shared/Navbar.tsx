@@ -1,16 +1,25 @@
 import { NavbarLinks } from "@/constants";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Button } from "../ui/button";
+import axios from "axios";
 
 const Navbar = () => {
   const { pathname } = useLocation();
-  const isLoggedIn = window.localStorage.getItem("userId");
+  const userId = window.localStorage.getItem("userId");
 
   const navigate = useNavigate();
 
-  const logout = () => {
-    window.localStorage.removeItem("userId");
-    navigate("/login");
+  const logout = async () => {
+    try {
+      await axios.post("http://localhost:8000/auth/logout", userId, {
+        withCredentials: true,
+      });
+      window.localStorage.removeItem("userId");
+
+      navigate("/login");
+    } catch (error) {
+      console.error(error);
+    }
   };
 
   return (
@@ -31,7 +40,7 @@ const Navbar = () => {
         );
       })}
 
-      {isLoggedIn ? (
+      {userId ? (
         <Button onClick={logout}>Logout</Button>
       ) : (
         <Link

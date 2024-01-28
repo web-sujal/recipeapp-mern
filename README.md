@@ -8,6 +8,7 @@
 
 # frontend :
 
+1. refactor createRecipe ingredients input to single input in which ingredients are separated by coma
 1. remove alerts with shadcn toasts
 1. add `react-dropzone` feature while creating recipe
 1. dynamic wallpaper changing after 5 sec on auth page

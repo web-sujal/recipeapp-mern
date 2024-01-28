@@ -133,7 +133,6 @@ const CreateRecipe = () => {
           type="number"
           id="cooking-time"
           name="cooking-time"
-          value={recipe.cookingTime}
           onChange={handleChange}
         />
 
