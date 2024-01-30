@@ -13,7 +13,7 @@ router.route("/").get(fetchAllRecipes);
 router.route("/create-recipe").post(createRecipe);
 router.route("/save-recipe").post(saveRecipe);
 
-router.route("/saved-recipes/ids").get(fetchSavedRecipeIds);
+router.route("/saved-recipes/ids/:userId").get(fetchSavedRecipeIds);
 router.route("/saved-recipes").get(fetchSavedRecipes);
 
 export { router as recipeRouter };

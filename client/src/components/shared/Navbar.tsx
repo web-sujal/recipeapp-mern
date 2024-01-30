@@ -23,15 +23,15 @@ const Navbar = () => {
   };
 
   return (
-    <div className="sticky top-0 w-full px-4 bg-neutral-800 flex items-center justify-center gap-1 md:gap-6">
+    <div className="sticky top-0 z-30 flex w-full items-center justify-center gap-1 bg-neutral-800 px-4 shadow-lg  md:gap-6">
       {NavbarLinks.map((link) => {
         return (
           <Link
             to={link.route}
             key={link.label}
-            className={`p-4 leading-tight md:text-xl hover:text-emerald-200 hover:-translate-y-0.5 transition-all duration-150 ${
+            className={`p-4 leading-tight transition-all duration-150 hover:-translate-y-0.5 hover:text-emerald-200 md:text-xl ${
               pathname === link.route
-                ? "underline text-emerald-300 font-bold underline-offset-4 md:tracking-widest"
+                ? "font-bold text-emerald-300 underline underline-offset-4 md:tracking-widest"
                 : ""
             }`}
           >
@@ -45,7 +45,7 @@ const Navbar = () => {
       ) : (
         <Link
           to="/login"
-          className="p-4 md:text-xl hover:text-emerald-200 hover:-translate-y-0.5 transition-all duration-150 truncate"
+          className="truncate p-4 transition-all duration-150 hover:-translate-y-0.5 hover:text-emerald-200 md:text-xl"
         >
           Login/Register
         </Link>

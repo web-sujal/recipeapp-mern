@@ -35,7 +35,7 @@ const saveRecipe = asyncHandler(async (req, res) => {
     const recipe = await Recipe.findById(req.body.recipeId);
     const user = await User.findById(req.body.userId);
     user?.savedRecipes.push(recipe);
-    await user.save({ validateBeforeSave: false });
+    await user.save({ validateBeforeSave: false }, { new: true });
 
     return res
       .status(200)
@@ -53,7 +53,7 @@ const saveRecipe = asyncHandler(async (req, res) => {
 
 const fetchSavedRecipeIds = asyncHandler(async (req, res) => {
   try {
-    const user = await User.findById(req.body.userId);
+    const user = await User.findById(req.params.userId);
 
     return res
       .status(200)

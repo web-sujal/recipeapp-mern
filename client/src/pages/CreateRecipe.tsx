@@ -19,7 +19,7 @@ const CreateRecipe = () => {
   const navigate = useNavigate();
 
   const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = e.target;
     setRecipe({ ...recipe, [name]: value });
@@ -27,7 +27,7 @@ const CreateRecipe = () => {
 
   const handleIngredientChange = (
     e: React.ChangeEvent<HTMLInputElement>,
-    index: number
+    index: number,
   ) => {
     const { value } = e.target;
     const ingredients = recipe.ingredients;
@@ -46,7 +46,7 @@ const CreateRecipe = () => {
     try {
       const res = await axios.post(
         "http://localhost:8000/recipes/create-recipe",
-        recipe
+        recipe,
       );
 
       console.log(res); // remove later
@@ -59,20 +59,20 @@ const CreateRecipe = () => {
   };
 
   return (
-    <div className="pt-12 pb-20 flex min-h-[85vh] overflow-y-auto flex-col items-start justify-center gap-4 bg-slate-900">
-      <h2 className="text-4xl mx-auto font-extrabold tracking-wide">
+    <div className="flex min-h-[85vh] flex-col items-start justify-center gap-4 overflow-y-auto bg-slate-900 pb-20 pt-12">
+      <h2 className="mx-auto text-4xl font-extrabold tracking-wide">
         Create Recipe
       </h2>
 
       <form
         onSubmit={handleSubmit}
-        className="flex flex-col mx-auto items-start justify-center gap-2 w-4/6 md:w-2/5"
+        className="mx-auto flex w-4/6 flex-col items-start justify-center gap-2 md:w-2/5"
       >
         <label className="md:text-lg" htmlFor="name">
           Name
         </label>
         <input
-          className="w-full text-black outline-none ring-transparent rounded-sm py-2 px-3 caret-slate-800 mb-2"
+          className="mb-2 w-full rounded-sm px-3 py-2 text-black caret-slate-800 outline-none ring-transparent"
           type="text"
           id="name"
           value={recipe.name}
@@ -91,12 +91,12 @@ const CreateRecipe = () => {
             key={index}
             value={ingredient}
             onChange={(e) => handleIngredientChange(e, index)}
-            className="w-full text-black outline-none ring-transparent rounded-sm py-2 px-3 caret-slate-800 mb-2"
+            className="mb-2 w-full rounded-sm px-3 py-2 text-black caret-slate-800 outline-none ring-transparent"
           />
         ))}
         <Button
           type="button"
-          className="w-full bg-neutral-700 hover:bg-neutral-800 rounded-sm"
+          className="w-full rounded-sm bg-neutral-700 hover:bg-neutral-800"
           onClick={addIngredient}
         >
           + Add Ingredient
@@ -106,7 +106,7 @@ const CreateRecipe = () => {
           Instructions
         </label>
         <textarea
-          className="w-full text-black outline-none ring-transparent rounded-sm py-2 px-3 caret-slate-800 mb-2"
+          className="mb-2 w-full rounded-sm px-3 py-2 text-black caret-slate-800 outline-none ring-transparent"
           id="instructions"
           name="instructions"
           value={recipe.instructions}
@@ -117,7 +117,7 @@ const CreateRecipe = () => {
           Image URL
         </label>
         <input
-          className="w-full text-black outline-none ring-transparent rounded-sm py-2 px-3 caret-slate-800 mb-2"
+          className="mb-2 w-full rounded-sm px-3 py-2 text-black caret-slate-800 outline-none ring-transparent"
           type="text"
           id="imageUrl"
           name="imageUrl"
@@ -125,20 +125,20 @@ const CreateRecipe = () => {
           onChange={handleChange}
         />
 
-        <label className="md:text-lg" htmlFor="cooking-time">
+        <label className="md:text-lg" htmlFor="cookingTime">
           Cooking Time ( in minutes )
         </label>
         <input
-          className="w-full text-black outline-none ring-transparent rounded-sm py-2 px-3 caret-slate-800 mb-2"
+          className="mb-2 w-full rounded-sm px-3 py-2 text-black caret-slate-800 outline-none ring-transparent"
           type="number"
-          id="cooking-time"
-          name="cooking-time"
+          id="cookingTime"
+          name="cookingTime"
           onChange={handleChange}
         />
 
         <Button
           type="submit"
-          className="w-full bg-teal-600 hover:bg-teal-700 py-6 text-lg"
+          className="w-full bg-teal-600 py-6 text-lg hover:bg-teal-700"
         >
           Create Recipe
         </Button>
