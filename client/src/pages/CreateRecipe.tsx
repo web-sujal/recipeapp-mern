@@ -3,9 +3,11 @@ import axios from "axios";
 import { useState } from "react";
 import { useGetUserId } from "@/hooks/useGetUserId";
 import { useNavigate } from "react-router-dom";
+import LoginFirstPage from "./LoginFirstPage";
 
 const CreateRecipe = () => {
   const userId = useGetUserId();
+  const navigate = useNavigate();
 
   const [recipe, setRecipe] = useState({
     name: "",
@@ -15,8 +17,6 @@ const CreateRecipe = () => {
     cookingTime: 0,
     createdBy: userId,
   });
-
-  const navigate = useNavigate();
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
@@ -57,6 +57,10 @@ const CreateRecipe = () => {
       console.error(error);
     }
   };
+
+  if (!userId) {
+    return <LoginFirstPage />;
+  }
 
   return (
     <div className="flex min-h-[85vh] flex-col items-start justify-center gap-4 overflow-y-auto bg-slate-900 pb-20 pt-12">

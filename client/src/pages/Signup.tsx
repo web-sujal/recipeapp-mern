@@ -1,4 +1,5 @@
 import AuthForm from "@/components/forms/AuthForm";
+import Navbar from "@/components/shared/Navbar";
 import axios from "axios";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
@@ -30,7 +31,10 @@ const Signup = () => {
   };
 
   return (
-    <div className="flex flex-col gap-4 items-center justify-between">
+    <div className="relative flex h-full w-full flex-col items-center justify-center gap-4">
+      <div className="absolute left-0 right-0 top-0">
+        <Navbar />
+      </div>
       <h2 className="text-4xl font-extrabold tracking-wide">Register</h2>
       <AuthForm
         username={username}
@@ -45,7 +49,7 @@ const Signup = () => {
         Already a user?{" "}
         <Link
           to="/login"
-          className="text-blue-500 hover:underline underline-offset-4 transition-all duration-150 cursor-pointer"
+          className="cursor-pointer text-blue-500 underline-offset-4 transition-all duration-150 hover:underline"
         >
           Login
         </Link>

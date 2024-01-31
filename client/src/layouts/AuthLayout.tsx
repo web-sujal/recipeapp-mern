@@ -2,15 +2,15 @@ import { Outlet } from "react-router-dom";
 
 const AuthLayout = () => {
   return (
-    <div className="flex h-screen justify-center items-center gap-2">
-      <section className="flex flex-1 items-center justify-center flex-col py-10">
+    <div className="flex h-screen items-center justify-center">
+      <section className="flex h-full flex-1 flex-col items-center justify-center">
         <Outlet />
       </section>
 
       <img
         src="/assets/images/demon-slayer.jpg"
         alt="auth-image"
-        className="hidden xl:block h-screen w-1/2 object-cover bg-no-repeat"
+        className="hidden h-screen w-1/2 bg-no-repeat object-cover xl:block"
       />
     </div>
   );

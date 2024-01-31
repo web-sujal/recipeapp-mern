@@ -19,6 +19,7 @@ const Home = () => {
   const [savedRecipes, setSavedRecipes] = useState<string[]>([]);
 
   const userId = useGetUserId();
+
   const { toast } = useToast();
 
   useEffect(() => {
@@ -45,7 +46,8 @@ const Home = () => {
     };
 
     fetchAllRecipes();
-    fetchSavedRecipeIds();
+
+    if (userId) fetchSavedRecipeIds();
   }, [userId]);
 
   const saveRecipe = async (recipeId: string) => {
@@ -85,13 +87,17 @@ const Home = () => {
             {/* name */}
             <div className="flex w-full items-center justify-between">
               <h4 className="text-4xl font-bold">{recipe.name}</h4>
-              <div onClick={() => saveRecipe(recipe._id)}>
-                {savedRecipes.includes(recipe._id) ? (
-                  <FaBookmark className="cursor-pointer text-3xl" />
-                ) : (
-                  <FaRegBookmark className="cursor-pointer text-3xl" />
-                )}
-              </div>
+
+              {/* save recipe icon */}
+              {userId && (
+                <div onClick={() => saveRecipe(recipe._id)}>
+                  {savedRecipes.includes(recipe._id) ? (
+                    <FaBookmark className="cursor-pointer text-3xl" />
+                  ) : (
+                    <FaRegBookmark className="cursor-pointer text-3xl" />
+                  )}
+                </div>
+              )}
             </div>
 
             {/* instructions */}

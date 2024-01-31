@@ -1,6 +1,7 @@
 import { useGetUserId } from "@/hooks/useGetUserId";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import LoginFirstPage from "./LoginFirstPage";
 // import { FaRegBookmark } from "react-icons/fa6";
 // import { useToast } from "@/components/ui/use-toast";
 
@@ -25,6 +26,7 @@ const SavedRecipes = () => {
       try {
         const res = await axios.get(
           `http://localhost:8000/recipes/saved-recipes/${userId}`,
+          { withCredentials: true },
         );
 
         setSavedRecipes(res.data.data);
@@ -37,6 +39,10 @@ const SavedRecipes = () => {
   }, [userId]);
 
   // unsave recipe fn
+
+  if (!userId) {
+    return <LoginFirstPage />;
+  }
 
   return (
     <ul className="flex flex-col items-center gap-4 bg-slate-900 px-6 py-10 lg:px-20">
