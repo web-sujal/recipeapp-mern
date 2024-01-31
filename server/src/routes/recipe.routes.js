@@ -14,6 +14,6 @@ router.route("/create-recipe").post(createRecipe);
 router.route("/save-recipe").post(saveRecipe);
 
 router.route("/saved-recipes/ids/:userId").get(fetchSavedRecipeIds);
-router.route("/saved-recipes").get(fetchSavedRecipes);
+router.route("/saved-recipes/:userId").get(fetchSavedRecipes);
 
 export { router as recipeRouter };

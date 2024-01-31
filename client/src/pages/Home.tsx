@@ -67,6 +67,8 @@ const Home = () => {
         variant: "success",
         title: "Recipe saved successfully.",
       });
+
+      setSavedRecipes(res.data.data.savedRecipes);
     } catch (error) {
       console.error(error);
     }

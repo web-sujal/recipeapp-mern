@@ -6,7 +6,7 @@ import { asyncHandler } from "../utils/asyncHandler.js";
 
 const fetchAllRecipes = asyncHandler(async (req, res) => {
   try {
-    const recipes = await Recipe.find({});
+    const recipes = await Recipe.find({}).sort("-createdAt");
 
     if (!recipes)
       throw new ApiError(500, "failed to fetch recipes from the server.");
@@ -71,10 +71,10 @@ const fetchSavedRecipeIds = asyncHandler(async (req, res) => {
 
 const fetchSavedRecipes = asyncHandler(async (req, res) => {
   try {
-    const user = await User.findById(req.body.userId);
+    const user = await User.findById(req.params.userId);
     const savedRecipes = await Recipe.find({
       _id: { $in: user.savedRecipes },
-    });
+    }).sort("-createdAt");
 
     return res
       .status(200)
